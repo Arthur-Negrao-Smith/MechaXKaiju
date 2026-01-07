@@ -9,19 +9,27 @@ public class GameLogFormatter extends Formatter {
   public String format(LogRecord record) {
     var level = GameLogLevel.toGameLogLevel(record.getLevel());
 
-    return String.format(
-        "%s[%s]%s %s[%s]%s %s - %s%n",
+    var sbuilder = new StringBuilder();
 
-        LogColor.GRAY,
-        LocalTime.now(),
-        LogColor.RESET,
+    sbuilder.append(
+        String.format(
+            "%s[%s]%s %s[%s]%s %s - %s%n",
 
-        colorFor(level),
-        level,
-        LogColor.RESET,
+            LogColor.GRAY,
+            LocalTime.now(),
+            LogColor.RESET,
 
-        record.getLoggerName(),
-        formatMessage(record));
+            colorFor(level),
+            level,
+            LogColor.RESET,
+
+            shortName(record.getLoggerName()),
+            formatMessage(record)));
+
+    if (record.getThrown() != null)
+      sbuilder.append(throwableToString(record.getThrown()));
+
+    return sbuilder.toString();
   }
 
   private static String colorFor(GameLogLevel level) {
@@ -37,5 +45,32 @@ public class GameLogFormatter extends Formatter {
       default:
         return LogColor.RESET;
     }
+  }
+
+  private static String shortName(String name) {
+    int i = name.lastIndexOf(".");
+
+    /** Don't have a dot */
+    if (i == -1)
+      return name;
+
+    return name.substring(i + 1);
+  }
+
+  private static String throwableToString(Throwable t) {
+    var sbuilder = new StringBuilder();
+
+    sbuilder.append(LogColor.RED)
+        .append(t)
+        .append(LogColor.RESET)
+        .append(System.lineSeparator());
+
+    for (var line : t.getStackTrace()) {
+      sbuilder.append("\tat ")
+          .append(line)
+          .append(System.lineSeparator());
+    }
+
+    return sbuilder.toString();
   }
 }
