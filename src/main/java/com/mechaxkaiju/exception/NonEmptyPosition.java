@@ -1,6 +1,6 @@
 package com.mechaxkaiju.exception;
 
-import com.mechaxkaiju.util.Position;
+import com.mechaxkaiju.board.Position;
 
 /**
  * Exception to throw when the entity tryes access the filled space on the board

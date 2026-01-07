@@ -1,7 +1,7 @@
 package com.mechaxkaiju.behavior;
 
 import com.mechaxkaiju.board.Board;
-import com.mechaxkaiju.util.Position;
+import com.mechaxkaiju.board.Position;
 
 public interface MovementBehavior {
   public void move(Position newPos);

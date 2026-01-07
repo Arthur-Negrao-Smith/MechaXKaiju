@@ -2,18 +2,17 @@ package com.mechaxkaiju;
 
 import com.mechaxkaiju.board.Board;
 import com.mechaxkaiju.entities.Entity;
-import com.mechaxkaiju.util.Position;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.mechaxkaiju.board.Position;
+import com.mechaxkaiju.util.logging.GameLogger;
 
 public class Game {
 
-  public static void main() {
-    var root = Logger.getLogger(Game.class.getName());
-    root.setLevel(Level.ALL);
+  private static final GameLogger log = new GameLogger(Game.class);
 
-    root.info("Init the game");
+  public static void main() {
+    GameLogger.init();
+
+    log.info("Init the game");
 
     var board = new Board();
     var entity = new Entity("Test");
@@ -25,7 +24,7 @@ public class Game {
       System.out.println("Error to add a entity");
     }
 
-    root.info("Terminate the game");
+    log.info("Terminate the game");
   }
 
 }

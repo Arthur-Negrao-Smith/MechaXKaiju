@@ -1,8 +1,7 @@
 package com.mechaxkaiju.entities;
 
-import com.mechaxkaiju.util.Position;
-
-import java.util.logging.Logger;
+import com.mechaxkaiju.board.Position;
+import com.mechaxkaiju.util.logging.GameLogger;
 
 public class Entity {
   private Position tablePos;
@@ -14,7 +13,7 @@ public class Entity {
 
   /** Indentifier to the current entity. */
   private final int id;
-  private static final Logger log = Logger.getLogger(Entity.class.getName());
+  private static final GameLogger log = new GameLogger(Entity.class);
 
   /**
    * Constructor from Entity with a character
@@ -27,7 +26,7 @@ public class Entity {
     this.character = character;
     this.id = GLOBAL_ID++;
 
-    log.info("Created the entity: " + this);
+    log.debug("Created the entity: " + this);
   }
 
   /**
@@ -40,7 +39,7 @@ public class Entity {
     this.character = null; // create a obstacle
     this.id = GLOBAL_ID++;
 
-    log.info("Created the entity (obstacle): " + this);
+    log.debug("Created the entity (obstacle): " + this);
   }
 
   public boolean isObstacle() {

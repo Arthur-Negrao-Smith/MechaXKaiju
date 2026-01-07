@@ -1,4 +1,4 @@
-package com.mechaxkaiju.util;
+package com.mechaxkaiju.board;
 
 /**
  * Position on the board game
