@@ -13,7 +13,7 @@ public class GameLogFormatter extends Formatter {
 
     sbuilder.append(
         String.format(
-            "%s[%s]%s %s[%s]%s %s - %s%n",
+            "%s[%s]%s %s[%7s]%s %s - %s%n",
 
             LogColor.GRAY,
             LocalTime.now(),
