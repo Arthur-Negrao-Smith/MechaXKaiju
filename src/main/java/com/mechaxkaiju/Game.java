@@ -15,13 +15,18 @@ public class Game {
     log.info("Init the game");
 
     var board = new Board();
-    var entity = new Entity("Test");
-    entity.setTablePos(new Position(0, 0));
+
+    var entity1 = new Entity("Rock");
+    entity1.setTablePos(new Position(0, 0));
+
+    var entity2 = new Entity("Tree");
+    entity2.setTablePos(new Position(0, 0));
 
     try {
-      board.addEntity(entity);
+      board.addEntity(entity1);
+      board.addEntity(entity2);
     } catch (Exception e) {
-      System.out.println("Error to add a entity");
+      log.error("Error to add a entity", e);
     }
 
     log.info("Terminate the game");
